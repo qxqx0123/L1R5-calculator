@@ -1,0 +1,265 @@
+# L1R5
+import time 
+x = 'BCDEFGHIJKLMOPQRSTUVWXYZbcdefghijklmopqrstuvwxyz'
+na = 'NAna'
+def ValidInput(s):
+    if s in x:
+        return False
+def calculate1(score):
+    if ValidInput(str(score)) == False:
+        print(f"{score} is not a number! if you do not take the subject, enter  NA  ")
+        time.sleep(0.5)
+        calculate1(input('How much did you score, if you do not take the subject, enter  NA  \n')) 
+    if str(score) in na:
+        print("You do NOT take this subject.") 
+        return 100
+    elif int(score) <=39:
+        print("You scored F9")
+        return 9
+    elif int(score) <= 45:
+        print("You scored E8")
+        return 8
+    elif int(score) <= 49:
+        print("You scored D7")
+        return 7
+    elif int(score) <=54:
+        print("You scored C6")
+        return 6
+    elif int(score) <=59:
+        print("You scored C5")
+        return 5
+    elif int(score) <=64:
+        print("You scored B4")
+        return 4
+    elif int(score) <=69:
+        print("You scored B3")
+        return 3
+    elif int(score) <=74:
+        print("You scored A2")
+        return 2
+    elif int(score) >=74:
+        print("You scored A1")
+        return 1
+def calculate3(score):
+    if score == (100,'a'):
+        return 100
+    elif score == (1,'a'):
+        return 1
+    elif score == (2,'a'):
+        return 2
+    elif score == (3,'a'):
+        return 3
+    elif score == (4,'a'):
+        return 4
+    elif score == (5,'a'):
+        return 5
+    elif score == (6,'a'):
+        return 6
+    elif score == (7,'a'):
+        return 7
+    elif score == (8,'a'):
+        return 8
+    elif score == (9,'a'):
+        return 9
+Sub_dict = {"Eng":(calculate1(input('How much did you score for English\n').upper()),'a'),
+           "Chinese":(calculate1(input('How much did you score for Chinese Language, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Malay":(calculate1(input('How much did you score for Malay Language, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Tamil":(calculate1(input('How much did you score for Tamil Language, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Amath":(calculate1(input('How much did you score for Additional Mathematics, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Emath":(calculate1(input('How much did you score for Mathematics, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Bio":(calculate1(input('How much did you score for Biology, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Chem":(calculate1(input('How much did you score for Chemistry, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Phy":(calculate1(input('How much did you score for Physics, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Science":(calculate1(input('How much did you score for Science, if you do not take this subject enter   NA  \n').upper()),'a'), 
+           "Humanities":(calculate2(int(input('How much did you score for Social Studies?\n')) +
+           int(input('How much did you score for Geography or History?\n'))),'a'),
+           "POA":(calculate1(input('How much did you score for Principles of Accounts, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Lit":(calculate1(input('How much did you score for Literature, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "D&T":(calculate1(input('How much did you score for Design & Technology, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "HMTL":(calculate1(input('How much did you score for Higher Mother Tongue, if you do not take this subject enter   NA  \n').upper()),'a'), 
+           "Higher Art":(calculate1(input('How much did you score for Higher Art, if you do not take this subject enter   NA  \n').upper()),'a'), 
+           "Higher Music":(calculate1(input('How much did you score for Higher Music, if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Malay(Special Programme)":(calculate1(input('How much did you score for Malay(Special Programme), if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Chinese(Special Programme)":(calculate1(input('How much did you score for Chinese(Special Programme), if you do not take this subject enter   NA  \n').upper()),'a'),
+           "Bahasa Indonesia":(calculate1(input('How much did you score for Bahasa Indonesia, if you do not take this subject enter   NA  \n')),'a'),
+           "Computing":(calculate1(input('How much did you score for Computing, if you do not take this subject enter   NA \n').upper()),'a'),
+           "F&C":(calculate1(input('How much did you score for Food and Consumer, if you do not take this subject enter   NA \n').upper()),'a'),
+           }
+reqeng = calculate3(Sub_dict["Eng"]) > 6
+reqamath = calculate3(Sub_dict["Amath"]) > 7 and calculate3(Sub_dict["Amath"]) <= 9
+reqemath = calculate3(Sub_dict["Emath"]) > 7 and calculate3(Sub_dict["Emath"]) <= 9
+reqchinese = calculate3(Sub_dict["Chinese"]) > 6 and calculate3(Sub_dict["Chinese"]) <= 9
+reqmalay = calculate3(Sub_dict["Malay"]) > 6 and calculate3(Sub_dict["Malay"]) <= 9
+reqtamil = calculate3(Sub_dict["Tamil"]) > 6 and calculate3(Sub_dict["Tamil"]) <= 9
+reqhmtl = calculate3(Sub_dict["HMTL"]) > 8 and calculate3(Sub_dict["HMTL"]) <= 9
+bonus2 = calculate3(Sub_dict["Eng"]) + calculate3(Sub_dict["HMTL"])
+bonus3 = calculate3(Sub_dict["Chinese(Special Programme)"])  <= 6 or calculate3(Sub_dict["Malay(Special Programme)"])  <= 6 or calculate3(Sub_dict["Bahasa Indonesia"]) <= 6
+
+L1R5_dict = {"L1":1,
+             "R1":100,
+             "R2":100,
+             "R3":100,
+             "R4":100,
+             "R5":100}
+# L1
+if Sub_dict["Eng"] <= Sub_dict["HMTL"]:
+    L1R5_dict["L1"] = Sub_dict["Eng"]
+else:
+    L1R5_dict["L1"] = Sub_dict["HTML"]
+# R1
+for scoress in [Sub_dict["Humanities"],Sub_dict["Higher Art"],Sub_dict["Higher Music"],Sub_dict["Malay(Special Programme)"],Sub_dict["Chinese(Special Programme)"],Sub_dict["Bahasa Indonesia"]]:
+    if L1R5_dict["R1"] == 100:
+        L1R5_dict["R1"] = scoress
+    elif scoress < L1R5_dict["R1"]:
+        L1R5_dict["R1"] = scoress
+# R2
+for scores in [Sub_dict["Amath"],Sub_dict["Emath"],Sub_dict["Bio"],Sub_dict["Chem"],Sub_dict["Phy"],Sub_dict["Science"]]:
+    if L1R5_dict["R2"] == 100:
+        L1R5_dict["R2"] = scores
+    elif scores < L1R5_dict["R2"]:
+        L1R5_dict["R2"] = scores
+# R3
+if L1R5_dict["R1"] is Sub_dict["Humanities"]:
+    Sub_dict["Humanities"] = (10,'a')
+elif L1R5_dict["R1"] is Sub_dict["Higher Art"]:
+    Sub_dict["Higher Art"] = (10,'a')
+elif L1R5_dict is Sub_dict["Higher Music"]:
+    Sub_dict["Higher Music"] = (10,'a')
+elif L1R5_dict["R1"] is Sub_dict["Malay(Special Programme)"]: 
+    Sub_dict["Malay(Special Programme)"] = (10,'a')
+elif L1R5_dict["R1"] is Sub_dict["Chinese(Special Programme)"]: 
+    Sub_dict["Chinese(Special Programme)"] = (10,'a')
+elif L1R5_dict["R1"] is Sub_dict["Bahasa Indonesia"]: 
+    Sub_dict["Bahasa Indonesia"] = (10,'a')
+if L1R5_dict["R2"] is Sub_dict["Amath"]: 
+    Sub_dict["Amath"] = (10,'a')
+elif L1R5_dict["R2"] is Sub_dict["Emath"]: 
+    Sub_dict["Emath"] = (10,'a')
+elif L1R5_dict["R2"] is Sub_dict["Bio"]: 
+    Sub_dict["Bio"] = (10,'a')
+elif L1R5_dict["R2"] is Sub_dict["Chem"]: 
+    Sub_dict["Chem"] = (10,'a')
+elif L1R5_dict["R2"] is Sub_dict["Phy"]: 
+    Sub_dict["Phy"] = (10,'a')
+elif L1R5_dict["R2"] is Sub_dict["Science"]: 
+    Sub_dict["Science"] = (10,'a')
+for scores1 in [Sub_dict["Humanities"],Sub_dict["Higher Art"],Sub_dict["Higher Music"],Sub_dict["Malay(Special Programme)"],Sub_dict["Chinese(Special Programme)"],Sub_dict["Bahasa Indonesia"],Sub_dict["Amath"],Sub_dict["Emath"],Sub_dict["Bio"],Sub_dict["Chem"],Sub_dict["Phy"],Sub_dict["Science"]]:
+    if L1R5_dict["R3"] == 100:
+        L1R5_dict["R3"] = scores1
+    elif scores1 < L1R5_dict["R3"]:
+        L1R5_dict["R3"] = scores1
+# R4
+if L1R5_dict["R1"] is Sub_dict["HMTL"]:
+    Sub_dict["Chinese"] = (10,'a')
+    Sub_dict["Malay"] = (10,'a')
+    Sub_dict["Tamil"] = (10,'a')
+if L1R5_dict["R3"] is Sub_dict["Humanities"]:
+    Sub_dict["Humanities"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Higher Art"]:
+     Sub_dict["Higher Art"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Higher Music"]:
+     Sub_dict["Higher Music"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Malay(Special Programme)"]: 
+     Sub_dict["Malay(Special Programme)"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Chinese(Special Programme)"]: 
+     Sub_dict["Chinese(Special Programme)"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Bahasa Indonesia"]: 
+     Sub_dict["Bahasa Indonesia"] = (10,'a')
+if L1R5_dict["R3"] is Sub_dict["Amath"]: 
+     Sub_dict["Amath"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Emath"]: 
+     Sub_dict["Emath"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Bio"]: 
+     Sub_dict["Bio"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Chem"]: 
+     Sub_dict["Chem"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Phy"]: 
+     Sub_dict["Phy"] = (10,'a')
+elif L1R5_dict["R3"] is Sub_dict["Science"]: 
+     Sub_dict["Science"] = (10,'a') 
+if L1R5_dict["R1"] is Sub_dict["Eng"]:
+    Sub_dict["Eng"] = (10,'a')
+for scores2 in [Sub_dict["Eng"],Sub_dict["Chinese"],Sub_dict["Malay"],Sub_dict["Tamil"],Sub_dict["Amath"],Sub_dict["Emath"],Sub_dict["Bio"],Sub_dict["Chem"],Sub_dict["Phy"],Sub_dict["Science"],Sub_dict["Humanities"],Sub_dict["POA"],Sub_dict["Lit"],Sub_dict["D&T"],Sub_dict["HMTL"],Sub_dict["Higher Art"],Sub_dict["Higher Music"],Sub_dict["Malay(Special Programme)"],Sub_dict["Chinese(Special Programme)"],Sub_dict["Bahasa Indonesia"],Sub_dict["Computing"],Sub_dict["F&C"]]:
+    if L1R5_dict["R4"] == 100:
+        L1R5_dict["R4"] = scores2
+    elif scores2 < L1R5_dict["R4"]:
+        L1R5_dict["R4"] = scores2
+# R5
+if L1R5_dict["R4"] is Sub_dict["Eng"]:
+    Sub_dict["Eng"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Chinese"]:
+    Sub_dict["Chinese"] = (10,'a')
+    Sub_dict["HMTL"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Malay"]:
+    Sub_dict["Malay"] = (10,'a')
+    Sub_dict["HMTL"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Tamil"]:
+    Sub_dict["Tamil"] = (10,'a')
+    Sub_dict["HMTL"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Amath"]: 
+     Sub_dict["Amath"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Emath"]: 
+     Sub_dict["Emath"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Bio"]: 
+     Sub_dict["Bio"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Chem"]: 
+     Sub_dict["Chem"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Phy"]: 
+     Sub_dict["Phy"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Science"]: 
+     Sub_dict["Science"] = (10,'a') 
+elif L1R5_dict["R4"] is Sub_dict["Humanities"]:
+    Sub_dict["Humanities"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["POA"]:
+    Sub_dict["POA"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Lit"]:
+    Sub_dict["Lit"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["D&T"]:
+    Sub_dict["D&T"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["HMTL"]:
+    Sub_dict["HMTL"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Higher Art"]:
+     Sub_dict["Higher Art"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Higher Music"]:
+     Sub_dict["Higher Music"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Malay(Special Programme)"]: 
+     Sub_dict["Malay(Special Programme)"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Chinese(Special Programme)"]: 
+     Sub_dict["Chinese(Special Programme)"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Bahasa Indonesia"]: 
+     Sub_dict["Bahasa Indonesia"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["Computing"]:
+    Sub_dict["Computing"] = (10,'a')
+elif L1R5_dict["R4"] is Sub_dict["F&C"]:
+    Sub_dict["F&C"] = (10,'a')
+for scores3 in [Sub_dict["Eng"],Sub_dict["Chinese"],Sub_dict["Malay"],Sub_dict["Tamil"],Sub_dict["Amath"],Sub_dict["Emath"],Sub_dict["Bio"],Sub_dict["Chem"],Sub_dict["Phy"],Sub_dict["Science"],Sub_dict["Humanities"],Sub_dict["POA"],Sub_dict["Lit"],Sub_dict["D&T"],Sub_dict["HMTL"],Sub_dict["Higher Art"],Sub_dict["Higher Music"],Sub_dict["Malay(Special Programme)"],Sub_dict["Chinese(Special Programme)"],Sub_dict["Bahasa Indonesia"],Sub_dict["Computing"],Sub_dict["F&C"]]:
+    if L1R5_dict["R5"] == 100:
+        L1R5_dict["R5"] = scores3
+    elif scores3 < L1R5_dict["R5"]:
+        L1R5_dict["R5"] = scores3
+# L1R5 calculations
+L1R5score = calculate3(L1R5_dict["L1"]) + calculate3(L1R5_dict["R1"]) + calculate3(L1R5_dict["R2"]) + calculate3(L1R5_dict["R3"]) + calculate3(L1R5_dict["R4"]) + calculate3(L1R5_dict["R5"])
+sumR1_R5 = calculate3(L1R5_dict["R1"]) + calculate3(L1R5_dict["R2"]) + calculate3(L1R5_dict["R3"]) + calculate3(L1R5_dict["R4"]) + calculate3(L1R5_dict["R5"])
+req1 = L1R5score > 15
+req2 = sumR1_R5 > 10
+if reqeng and req1 and req2 :
+    print("You have not met the requirements, because you scored > 6 for English and your L1R5 score is > 15 and you did not have grades of A1 or A2 in all 5 Relevant Subjects.")
+elif reqamath or reqemath and req1 and req2:
+    print("You have not met the requirements, because you scored > 7 for Elementary or Additional Mathematics and your L1R5 score is > 15 and you did not have grades of A1 or A2 in all 5 Relevant Subjects")
+elif reqchinese or reqmalay or reqtamil and req1 and req2:
+    print("You have not met the req63uirements, because you scored > 6 for Mother Tongue and your L1R5 score is > 15 and you did not have grades of A1 or A2 in all 5 Relevant Subjects")
+elif reqhmtl and req1 and req2:
+    print("You have not met the requirements, because you scored > 8 for  Higher Mother Tongue and your L1R5 score is > 15 and you did not have grades of A1 or A2 in all 5 Relevant Subjects")
+bonuspoint = 0
+if input("CCA grade: Excellent, A1 or A2 for admission to all institutions, y/n").lower() == 'y':
+    bonuspoint = bonuspoint + 2
+elif input("CCA grade: Good, or from B3 to C6 for admission to all institutions, y/n").lower() =='y':
+    bonuspoint = bonuspoint + 1
+if bonus2 < 13:
+    bonuspoint = bonuspoint + 2
+if bonus3 and bonuspoint < 4:
+    bonuspoint = bonuspoint + 2
+if input("Is your fist choice your affiliated JC, y/n").lower() == "y" and bonuspoint < 4:
+    bonuspoint = bonuspoint + 2
+L1R5score = L1R5score - bonuspoint
+print(f"Your L1R5 score is {L1R5score}")
