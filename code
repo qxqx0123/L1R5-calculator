@@ -2,16 +2,20 @@
 import time 
 x = 'BCDEFGHIJKLMOPQRSTUVWXYZbcdefghijklmopqrstuvwxyz'
 na = 'NAna'
-def ValidInput(s):
-    if s in x:
-        return False
+def ValidInput1(s):
+    if s not in x:
+        return s
+    else:
+        print(f"{s} is not a number! if you do not take the subject, enter  NA  ")
+        return ValidInput1(input('How much did you score, if you do not take the subject, enter  NA  \n'))
+def ValidInput2(na1):
+    if na1 in na:
+        return int(1)
+    else: 
+        return int(na1)
 def calculate1(score):
-    if ValidInput(str(score)) == False:
-        print(f"{score} is not a number! if you do not take the subject, enter  NA  ")
-        time.sleep(0.5)
-        calculate1(input('How much did you score, if you do not take the subject, enter  NA  \n')) 
-    if str(score) in na:
-        print("You do NOT take this subject.") 
+    if int(score) == 1:
+        print("you do not take this subject")
         return 100
     elif int(score) <=39:
         print("You scored F9")
@@ -40,6 +44,34 @@ def calculate1(score):
     elif int(score) >=74:
         print("You scored A1")
         return 1
+def calculate2(score):
+    if int(score) <=78:
+        print("You scored F9")
+        return 9
+    elif int(score) <= 90:
+        print("You scored E8")
+        return 8
+    elif int(score) <= 98:
+        print("You scored D7")
+        return 7
+    elif int(score) <=108:
+        print("You scored C6")
+        return 6
+    elif int(score) <=118:
+        print("You scored C5")
+        return 5
+    elif int(score) <=128:
+        print("You scored B4")
+        return 4
+    elif int(score) <=138:
+        print("You scored B3")
+        return 3
+    elif int(score) <=148:
+        print("You scored A2")
+        return 2 
+    elif int(score) >=148:
+        print("You scored A1")
+        return 1
 def calculate3(score):
     if score == (100,'a'):
         return 100
@@ -61,29 +93,29 @@ def calculate3(score):
         return 8
     elif score == (9,'a'):
         return 9
-Sub_dict = {"Eng":(calculate1(input('How much did you score for English\n').upper()),'a'),
-           "Chinese":(calculate1(input('How much did you score for Chinese Language, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Malay":(calculate1(input('How much did you score for Malay Language, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Tamil":(calculate1(input('How much did you score for Tamil Language, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Amath":(calculate1(input('How much did you score for Additional Mathematics, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Emath":(calculate1(input('How much did you score for Mathematics, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Bio":(calculate1(input('How much did you score for Biology, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Chem":(calculate1(input('How much did you score for Chemistry, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Phy":(calculate1(input('How much did you score for Physics, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Science":(calculate1(input('How much did you score for Science, if you do not take this subject enter   NA  \n').upper()),'a'), 
-           "Humanities":(calculate2(int(input('How much did you score for Social Studies?\n')) +
-           int(input('How much did you score for Geography or History?\n'))),'a'),
-           "POA":(calculate1(input('How much did you score for Principles of Accounts, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Lit":(calculate1(input('How much did you score for Literature, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "D&T":(calculate1(input('How much did you score for Design & Technology, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "HMTL":(calculate1(input('How much did you score for Higher Mother Tongue, if you do not take this subject enter   NA  \n').upper()),'a'), 
-           "Higher Art":(calculate1(input('How much did you score for Higher Art, if you do not take this subject enter   NA  \n').upper()),'a'), 
-           "Higher Music":(calculate1(input('How much did you score for Higher Music, if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Malay(Special Programme)":(calculate1(input('How much did you score for Malay(Special Programme), if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Chinese(Special Programme)":(calculate1(input('How much did you score for Chinese(Special Programme), if you do not take this subject enter   NA  \n').upper()),'a'),
-           "Bahasa Indonesia":(calculate1(input('How much did you score for Bahasa Indonesia, if you do not take this subject enter   NA  \n')),'a'),
-           "Computing":(calculate1(input('How much did you score for Computing, if you do not take this subject enter   NA \n').upper()),'a'),
-           "F&C":(calculate1(input('How much did you score for Food and Consumer, if you do not take this subject enter   NA \n').upper()),'a'),
+Sub_dict = {"Eng":(calculate1(ValidInput2(ValidInput1(input('How much did you score for English\n').upper()))),'a'),
+           "Chinese":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Chinese Language, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Malay":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Malay Language, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Tamil":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Tamil Language, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Amath":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Additional Mathematics, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Emath":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Mathematics, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Bio":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Biology, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Chem":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Chemistry, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Phy":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Physics, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Science":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Science, if you do not take this subject enter   NA  \n').upper()))),'a'), 
+           "Humanities":(calculate2(int(ValidInput2(ValidInput1(input('How much did you score for Social Studies?\n')))) +
+           int(ValidInput2(ValidInput1(input('How much did you score for Geography or History?\n'))))),'a'),
+           "POA":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Principles of Accounts, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Lit":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Literature, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "D&T":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Design & Technology, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "HMTL":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Higher Mother Tongue, if you do not take this subject enter   NA  \n').upper()))),'a'), 
+           "Higher Art":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Higher Art, if you do not take this subject enter   NA  \n').upper()))),'a'), 
+           "Higher Music":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Higher Music, if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Malay(Special Programme)":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Malay(Special Programme), if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Chinese(Special Programme)":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Chinese(Special Programme), if you do not take this subject enter   NA  \n').upper()))),'a'),
+           "Bahasa Indonesia":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Bahasa Indonesia, if you do not take this subject enter   NA  \n')))),'a'),
+           "Computing":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Computing, if you do not take this subject enter   NA \n').upper()))),'a'),
+           "F&C":(calculate1(ValidInput2(ValidInput1(input('How much did you score for Food and Consumer, if you do not take this subject enter   NA \n').upper()))),'a'),
            }
 reqeng = calculate3(Sub_dict["Eng"]) > 6
 reqamath = calculate3(Sub_dict["Amath"]) > 7 and calculate3(Sub_dict["Amath"]) <= 9
